@@ -26,6 +26,7 @@ export class ProjectsController {
   ) {}
 
   @Sse('events')
+  @PublicAccess()
   events(): Observable<MessageEvent> {
     return this.projectsService.events$;
   }

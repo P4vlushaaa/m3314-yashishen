@@ -1,95 +1,63 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <title>Проекты</title>
-    {{> head}}
-</head>
-<body>
-{{> header}}
+{{#> layout pageTitle="Проекты"}}
 
 {{#> content}}
-    <section>
-        <h1>Проекты</h1>
+<section>
+    <h1>Проекты</h1>
 
-        <aside class="project__row">
-            {{#each projects}}
-                <div class="project-item">
-                    {{> projectCard}}
+    <aside class="project__row">
+        {{#each projects}}
+            <div class="project-item">
+                {{> projectCard}}
 
-                    <div class="project-actions">
-                        <div class="project-actions-left">
-                            <a href="/projects/{{id}}" class="white-button">Открыть</a>
-                            <a href="/projects/{{id}}/edit" class="black-button">Редактировать</a>
-                        </div>
+                <div class="project-actions">
+                    <div class="project-actions-left">
+                        <a href="/projects/{{id}}" class="white-button">
+                            Открыть
+                        </a>
 
-                        <form action="/projects/{{id}}/delete" method="post">
-                            <button type="submit" class="danger-button">Удалить</button>
-                        </form>
+                        <a href="/projects/{{id}}/edit" class="black-button">
+                            Редактировать
+                        </a>
                     </div>
-                </div>
-            {{/each}}
-        </aside>
 
-        <aside style="display: flex; justify-content: center; margin-top: 24px;">
-            <a href="/projects/add" class="black-button">Добавить проект</a>
-        </aside>
-    </section>
+                    <form action="/projects/{{id}}/delete" method="post">
+                        <button type="submit" class="danger-button">
+                            Удалить
+                        </button>
+                    </form>
+                </div>
+            </div>
+        {{/each}}
+    </aside>
+
+    <aside style="display:flex; justify-content:center; margin-top:24px;">
+        <a href="/projects/add" class="black-button">
+            Добавить проект
+        </a>
+    </aside>
+</section>
 {{/content}}
 
-{{> footer}}
-
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        if (typeof EventSource === 'undefined') {
-            console.warn('EventSource is not supported');
-            return;
-        }
+document.addEventListener('DOMContentLoaded', () => {
+    const eventSource = new EventSource('/projects/events');
 
-        const eventSource = new EventSource('/projects/events');
+    eventSource.onmessage = (event) => {
+        try {
+            const payload = JSON.parse(event.data);
 
-        eventSource.onopen = () => {
-            console.log('SSE connected');
-        };
-
-        eventSource.onmessage = (event) => {
-            console.log('SSE raw message:', event.data);
-
-            try {
-                const payload = JSON.parse(event.data);
-                console.log('SSE parsed payload:', payload);
-
-                if (!payload || !payload.message) {
-                    return;
-                }
-
-                if (typeof Toastify !== 'undefined') {
-                    Toastify({
-                        text: payload.message,
-                        duration: 3000,
-                        gravity: 'bottom',
-                        position: 'right',
-                        close: true,
-                        stopOnFocus: true,
-                        style: {
-                            background: '#111827',
-                            borderRadius: '12px',
-                            fontFamily: 'Inter, Arial, sans-serif',
-                            fontSize: '14px',
-                            boxShadow: '0 10px 25px rgba(0,0,0,.15)',
-                        },
-                    }).showToast();
-                } else {
-                    console.warn('Toastify is not defined');
-                }
-            } catch (e) {
-                console.error('SSE parse error:', e, event.data);
+            if (payload?.message) {
+                showToast(payload.message, 'info');
             }
-        };
+        } catch (error) {
+            console.error('SSE parse error:', error);
+        }
+    };
 
-        eventSource.onerror = (e) => {
-            console.error('SSE connection error', e);
-        };
-    });
+    eventSource.onerror = (error) => {
+        console.error('SSE connection error:', error);
+    };
+});
 </script>
-</body>
-</html>
+
+{{/layout}}
