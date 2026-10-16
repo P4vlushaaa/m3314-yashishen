@@ -27,6 +27,8 @@ import {
     ApiOkResponse,
     ApiOperation,
     ApiTags,
+    ApiForbiddenResponse,
+    ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { Response } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -141,6 +143,8 @@ export class SkillsApiController {
         type: SkillResponseDto,
     })
     @ApiBadRequestResponse({ description: 'Некорректное тело запроса' })
+    @ApiUnauthorizedResponse({ description: 'Пользователь не авторизован' })
+    @ApiForbiddenResponse({ description: 'Недостаточно прав' })
     async create(@Body() dto: CreateSkillDto) {
         return this.skillsService.create(dto);
     }
@@ -161,6 +165,8 @@ export class SkillsApiController {
     })
     @ApiBadRequestResponse({ description: 'Некорректные данные' })
     @ApiNotFoundResponse({ description: 'Навык не найден' })
+    @ApiUnauthorizedResponse({ description: 'Пользователь не авторизован' })
+    @ApiForbiddenResponse({ description: 'Недостаточно прав' })
     async update(
         @Param('id', ParseIntPipe) id: number,
         @Body() dto: UpdateSkillDto,
@@ -174,6 +180,8 @@ export class SkillsApiController {
     @ApiOperation({ summary: 'Удалить навык' })
     @ApiNoContentResponse({ description: 'Навык удалён' })
     @ApiNotFoundResponse({ description: 'Навык не найден' })
+    @ApiUnauthorizedResponse({ description: 'Пользователь не авторизован' })
+    @ApiForbiddenResponse({ description: 'Требуется роль admin' })
     async remove(@Param('id', ParseIntPipe) id: number) {
         await this.skillsService.remove(id);
     }

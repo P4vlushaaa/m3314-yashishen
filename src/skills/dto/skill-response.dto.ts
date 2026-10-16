@@ -15,4 +15,6 @@ export class SkillResponseDto {
 
     @ApiProperty({ example: '2026-04-15T13:51:21.000Z' })
     createdAt: Date;
+    @ApiProperty({ example: 1 })
+    profileId: number;
 }

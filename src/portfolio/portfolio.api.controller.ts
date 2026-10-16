@@ -79,5 +79,47 @@ export class PortfolioApiController {
     async findContacts(@Param('id', ParseIntPipe) id: number) {
         return this.portfolioService.findContactsByProfileId(id);
     }
-
+    
+    @Get(':id/projects/:projectId')
+    @PublicAccess()
+    @ApiOperation({ summary: 'Получить конкретный проект профиля' })
+    @ApiOkResponse({
+        description: 'Проект найден',
+        type: ProjectResponseDto,
+    })
+    @ApiNotFoundResponse({ description: 'Профиль или проект не найден' })
+    async findProject(
+        @Param('id', ParseIntPipe) id: number,
+        @Param('projectId', ParseIntPipe) projectId: number,
+    ) {
+        return this.portfolioService.findProjectByProfileId(id, projectId);
+    }   
+    @Get(':id/skills/:skillId')
+    @PublicAccess()
+    @ApiOperation({ summary: 'Получить конкретный навык профиля' })
+    @ApiOkResponse({
+        description: 'Навык найден',
+        type: SkillResponseDto,
+    })
+    @ApiNotFoundResponse({ description: 'Профиль или навык не найден' })
+    async findSkill(
+        @Param('id', ParseIntPipe) id: number,
+        @Param('skillId', ParseIntPipe) skillId: number,
+    ) {
+        return this.portfolioService.findSkillByProfileId(id, skillId);
+    }
+    @Get(':id/contacts/:contactId')
+    @PublicAccess()
+    @ApiOperation({ summary: 'Получить конкретный контакт профиля' })
+    @ApiOkResponse({
+        description: 'Контакт найден',
+        type: ContactResponseDto,
+    })
+    @ApiNotFoundResponse({ description: 'Профиль или контакт не найден' })
+    async findContact(
+        @Param('id', ParseIntPipe) id: number,
+        @Param('contactId', ParseIntPipe) contactId: number,
+    ) {
+        return this.portfolioService.findContactByProfileId(id, contactId);
+    }
 }

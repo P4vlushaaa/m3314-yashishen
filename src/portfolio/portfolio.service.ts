@@ -93,4 +93,60 @@ export class PortfolioService {
             orderBy: { id: 'asc' },
         });
     }
+    async findProjectByProfileId(profileId: number, projectId: number) {
+    await this.findOne(profileId);
+
+    const project = await this.prisma.project.findFirst({
+        where: {
+            id: projectId,
+            profileId,
+        },
+    });
+
+    if (!project) {
+        throw new NotFoundException(
+            `Project with id=${projectId} not found for profile=${profileId}`,
+        );
+    }
+
+    return project;
+    }
+
+    async findSkillByProfileId(profileId: number, skillId: number) {
+        await this.findOne(profileId);
+
+    const skill = await this.prisma.skill.findFirst({
+        where: {
+            id: skillId,
+            profileId,
+        },
+    });
+
+    if (!skill) {
+        throw new NotFoundException(
+            `Skill with id=${skillId} not found for profile=${profileId}`,
+        );
+    }
+
+    return skill;
+    }
+
+    async findContactByProfileId(profileId: number, contactId: number) {
+        await this.findOne(profileId);
+
+    const contact = await this.prisma.contact.findFirst({
+        where: {
+            id: contactId,
+            profileId,
+        },
+    });
+
+    if (!contact) {
+        throw new NotFoundException(
+            `Contact with id=${contactId} not found for profile=${profileId}`,
+        );
+    }
+
+    return contact;
+    }
 }
