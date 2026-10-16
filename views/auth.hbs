@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Авторизация</title>
+    {{> head}}
+</head>
+<body class="no-scroll">
+{{> header}}
+
+{{#> content mainClass="auth-page"}}
+    <section class="auth-container">
+        <div class="auth-form">
+            <h2 id="auth-title">Вход</h2>
+
+            <form id="auth-form">
+                <label>
+                    Email
+                    <input type="email" id="email" required>
+                </label>
+
+                <label>
+                    Пароль
+                    <input type="password" id="password" required>
+                </label>
+
+                <div class="auth-actions">
+                    <button
+                            type="submit"
+                            class="black-button auth-action-button"
+                            id="auth-submit-button"
+                    >
+                        Войти
+                    </button>
+
+                    <a
+                            href="#"
+                            id="auth-toggle-button"
+                            class="white-button auth-action-button"
+                            role="button"
+                    >
+                        Зарегистрироваться
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="auth-image">
+            <img
+                    src="/img/site-logo.jpeg"
+                    alt="project image"
+                    width="747"
+                    height="764"
+            />
+        </div>
+    </section>
+{{/content}}
+
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="/js/toast.js"></script>
+<script type="module" src="/js/auth.js"></script>
+</body>
+</html>

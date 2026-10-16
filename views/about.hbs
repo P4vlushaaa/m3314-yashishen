@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Web-портфолио — Обо мне</title>
+    {{> head}}
+</head>
+<body>
+{{> header}}
+
+{{#> content}}
+    <section class="header">
+        <h1>Павел Ящищен</h1>
+        <p><em>Backend-разработчик и студент ИТМО</em></p>
+    </section>
+
+    <section id="about">
+        <h2 id="about-title">Обо мне</h2>
+
+        <article>
+            <h3>Коротко</h3>
+            <p>Я разрабатываю серверные приложения, проектирую API и работаю с базами данных. Ценю <strong>понятную архитектуру</strong>,
+                аккуратные интерфейсы и код, который можно поддерживать без лишней боли. <br>
+                Раньше думал, что <del class="text-strike">«главное, чтобы работало»</del>, но теперь стараюсь сразу закладывать тестируемость и читаемость.</p>
+        </article>
+
+        <article>
+            <h4>P.S.</h4>
+            <aside>
+                <p>Постоянно учусь и постепенно собираю портфолио из учебных и прикладных проектов.</p>
+            </aside>
+        </article>
+        <article class="smart-quote">
+            <h4>"Умная цитата"</h4>
+            <aside>
+                <blockquote>«Хороший backend не заметен пользователю, пока все работает быстро и предсказуемо.»</blockquote>
+            </aside>
+        </article>
+    </section>
+{{/content}}
+
+{{> footer}}
+</body>
+</html>

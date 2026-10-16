@@ -1,0 +1,39 @@
+<li class="nav__session-item" id="nav-session-item">
+    {{#if isAuth}}
+        <a
+                id="nav-session-trigger"
+                href="#"
+                class="black-button nav__session-trigger"
+                data-auth="true"
+                aria-expanded="false"
+                aria-haspopup="true"
+        >
+            {{user}}
+        </a>
+    {{else}}
+        <a
+                id="nav-session-trigger"
+                href="/auth"
+                class="black-button nav__session-trigger"
+                data-auth="false"
+                aria-expanded="false"
+                aria-haspopup="true"
+        >
+            Войти
+        </a>
+    {{/if}}
+
+    <div
+            id="nav-session-popup"
+            class="nav__session-popup"
+            hidden
+    >
+        <button
+                id="logout-button"
+                class="danger-button nav__session-logout"
+                type="button"
+        >
+            Выйти
+        </button>
+    </div>
+</li>

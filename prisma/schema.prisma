@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  email String @unique
+  passwordHash String?
+  externalAuthId String? @unique
+  createdAt DateTime @default(now())
+
+  profile Profile?
+
+  @@map("users")
+}
+
+model Profile {
+  id Int @id @default(autoincrement())
+  fullName String
+  subtitle String
+  bio String
+  createdAt DateTime @default(now())
+
+  userId Int @unique
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  skills Skill[]
+  projects Project[]
+  contacts Contact[]
+
+  @@map("profiles")
+}
+
+model Skill {
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  imageUrl String?
+  createdAt DateTime @default(now())
+
+  profileId Int
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("skills")
+}
+
+model Project {
+  id Int @id @default(autoincrement())
+  title String
+  description String
+  repositoryUrl String?
+  imageUrl String?
+  createdAt DateTime @default(now())
+
+  profileId Int
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("projects")
+}
+
+model Contact {
+  id Int @id @default(autoincrement())
+  type String
+  value String
+  createdAt DateTime @default(now())
+
+  profileId Int
+  profile Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@map("contacts")
+}

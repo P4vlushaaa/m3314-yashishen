@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Редактировать проект</title>
+    {{> head}}
+</head>
+<body>
+{{> header}}
+
+{{#> content}}
+    <section>
+        <h1>Редактировать проект</h1>
+
+        <form action="/projects/{{project.id}}/edit" method="post" class="constructor-form">
+            <label>
+                Название
+                <input type="text" name="title" value="{{project.title}}" required>
+            </label>
+
+            <label>
+                Описание
+                <textarea name="description" rows="6" required>{{project.description}}</textarea>
+            </label>
+
+            <label>
+                Ссылка на репозиторий
+                <input type="text" name="repositoryUrl" value="{{project.repositoryUrl}}">
+            </label>
+
+            <label>
+                Ссылка на изображение
+                <input type="text" name="imageUrl" id="project-image-url" value="{{project.imageUrl}}">
+            </label>
+
+            <div
+                    class="upload-control"
+                    data-image-upload
+                    data-upload-endpoint="/api/projects/upload"
+                    data-upload-target="#project-image-url"
+            >
+                <input
+                        type="file"
+                        id="project-image-file"
+                        accept="image/png,image/jpeg,image/jpg,image/webp"
+                        hidden
+                >
+                <button type="button" class="white-button" data-upload-trigger>
+                    Загрузить изображение
+                </button>
+                <span class="upload-control__status" data-upload-status></span>
+            </div>
+
+            <button type="submit" class="black-button">Сохранить изменения</button>
+        </form>
+    </section>
+{{/content}}
+
+{{> footer}}
+<script src="/js/project-image-upload.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>{{project.title}}</title>
+    {{> head}}
+</head>
+<body>
+{{> header}}
+
+{{#> content}}
+    <section>
+        <h1>{{project.title}}</h1>
+
+        <article>
+            <h3>Описание</h3>
+            <p>{{project.description}}</p>
+        </article>
+
+        {{#if project.repositoryUrl}}
+            <article>
+                <h3>Репозиторий</h3>
+                <p><a href="{{project.repositoryUrl}}">{{project.repositoryUrl}}</a></p>
+            </article>
+        {{/if}}
+
+        {{#if project.imageUrl}}
+            <article>
+                <img src="{{project.imageUrl}}" alt="{{project.title}}" width="400">
+            </article>
+        {{/if}}
+
+        <aside class="about-button">
+            <a href="/projects" class="white-button">Назад к списку</a>
+            <a href="/projects/{{project.id}}/edit" class="black-button">Редактировать</a>
+        </aside>
+    </section>
+{{/content}}
+
+{{> footer}}
+</body>
+</html>

@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: m3314-yashishen-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: portfolio_data_base
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5436:5432"

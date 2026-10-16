@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Навыки</title>
+    {{> head}}
+</head>
+<body>
+{{> header}}
+
+{{#> content}}
+    <section>
+        <h1>Навыки</h1>
+
+        <article class="skills__row">
+            {{#each skills}}
+                <div class="skill-item">
+                    {{> skillCard}}
+
+                    <div class="skill-actions" data-guest-actions>
+                        <a href="/skills/{{id}}" class="white-button">Открыть</a>
+                    </div>
+
+                    <div class="skill-actions" data-auth-actions hidden>
+                        <a href="/skills/{{id}}/edit" class="white-button">Редактировать</a>
+
+                        <form action="/skills/{{id}}/delete" method="post">
+                            <button type="submit" class="danger-button">Удалить</button>
+                        </form>
+                    </div>
+                </div>
+            {{/each}}
+        </article>
+
+        <aside class="skills-add-button">
+            <a href="/skills/add" class="black-button">Добавить навык</a>
+        </aside>
+    </section>
+{{/content}}
+
+{{> footer}}
+</body>
+</html>

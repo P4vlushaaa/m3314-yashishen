@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Web-портфолио — Проекты</title>
+    {{> head}}
+
+    <link rel="stylesheet" href="/css/todoStyle.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.js"></script>
+
+    <script src="/js/todos.js" defer></script>
+</head>
+<body>
+{{> header}}
+
+{{#> content}}
+    <section id="projects">
+        <div class="project__part">
+            <h2 id="projects-title">Проекты</h2>
+            <aside class="project__row">
+                {{#each projects}}
+                    {{> projectCard}}
+                {{/each}}
+            </aside>
+
+            <aside class="project__links">
+                <ul>
+                    <li> <a href="https://github.com/pavel-yashishen/task-tracker"
+                            class="black-button">Task Tracker</a> </li>
+                    <li> <a href="https://github.com/pavel-yashishen"
+                            class = "white-button" >GitHub profile </a> </li>
+                </ul>
+            </aside>
+        </div>
+        <article class="project__image">
+            <aside>
+                <img src="img/image-for-projects-1.png" alt="project image" width="747" height="764" />
+            </aside>
+        </article>
+    </section>
+
+    <section id="mascat-and-code">
+        <figure>
+            <figcaption>
+            <pre class="mas-cat">
+
+   /\_/\
+  ( o.o )  &lt;— масКот
+   &gt; ^ &lt;
+        </pre>
+            </figcaption>
+        </figure>
+
+        <h3 class="code-snippet-header">Сниппет кода на JavaScript</h3>
+        <aside class="code-snippet">
+            <pre><code class="language-javascript">
+    // Генерация случайного числа от 1 до 20
+    const number = Math.floor(Math.random() * 20) + 1;
+    console.log("Выпало число:", number);
+            </code></pre>
+        </aside>
+    </section>
+
+    <hr class="selection-divider" />
+
+    <section id="achievements">
+        <h2>Мои успехи и неудачи</h2>
+
+        <article>
+            <h3>Успехи</h3>
+            <ul>
+                <li>Разработал REST API для учебного трекера задач.</li>
+                <li>Подключил PostgreSQL и Prisma к серверному приложению.</li>
+                <li>Добавил Swagger-документацию и GraphQL-запросы для портфолио.</li>
+            </ul>
+        </article>
+
+        <article>
+            <h3>Неудачи</h3>
+            <ol>
+                <li>На первых проектах недооценивал время на проектирование схемы БД.</li>
+                <li>Несколько раз переписывал API после появления новых требований.</li>
+                <li>Понял, что документацию лучше вести сразу, а не в конце разработки.</li>
+            </ol>
+        </article>
+    </section>
+
+    <hr class="selection-divider" />
+
+    <section id="todo-section" class="todo-section">
+        <h2>Список дел по проектам</h2>
+        <p id="todo-filter-info" class="todo-filter-info">
+            Загружаем фильтры...
+        </p>
+
+        <div id="todo-preloader" class="preloader">
+            <div class="preloader__spinner"></div>
+            <span>Загружаем данные...</span>
+        </div>
+
+        <ul id="todo-list" class="todo-list">
+
+        </ul>
+
+        <div id="todo-error" class="error-message" aria-live="polite"></div>
+    </section>
+{{/content}}
+
+{{> footer}}
+</body>
+</html>

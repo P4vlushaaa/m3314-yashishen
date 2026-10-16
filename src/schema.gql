@@ -1,0 +1,130 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""Контакт профиля"""
+type ContactType {
+  """Идентификатор контакта"""
+  id: Int!
+
+  """Тип контакта"""
+  type: String!
+
+  """Значение контакта"""
+  value: String!
+}
+
+"""Данные для создания проекта"""
+input CreateProjectInput {
+  """Описание проекта"""
+  description: String!
+
+  """Ссылка на изображение"""
+  imageUrl: String
+
+  """Ссылка на репозиторий"""
+  repositoryUrl: String
+
+  """Название проекта"""
+  title: String!
+}
+
+type Mutation {
+  """Создать проект"""
+  createProject(input: CreateProjectInput!): ProjectType!
+
+  """Удалить проект"""
+  deleteProject(id: Int!): Boolean!
+
+  """Обновить проект"""
+  updateProject(input: UpdateProjectInput!): ProjectType!
+}
+
+"""Профиль портфолио"""
+type PortfolioType {
+  """Контакты профиля"""
+  contacts: [ContactType!]!
+
+  """Полное имя владельца портфолио"""
+  fullName: String
+
+  """Идентификатор профиля"""
+  id: Int!
+
+  """Проекты профиля"""
+  projects: [ProjectType!]!
+
+  """Краткое описание профиля"""
+  shortBio: String
+
+  """Навыки профиля"""
+  skills: [SkillType!]!
+
+  """Подзаголовок профиля"""
+  subtitle: String
+}
+
+"""Проект портфолио"""
+type ProjectType {
+  """Описание проекта"""
+  description: String!
+
+  """Идентификатор проекта"""
+  id: Int!
+
+  """Ссылка на изображение"""
+  imageUrl: String
+
+  """Ссылка на репозиторий"""
+  repositoryUrl: String
+
+  """Название проекта"""
+  title: String!
+}
+
+type Query {
+  """Получить профиль по id"""
+  portfolio(id: Int!): PortfolioType!
+
+  """Получить список профилей"""
+  portfolios: [PortfolioType!]!
+
+  """Получить проект по id"""
+  project(id: Int!): ProjectType!
+
+  """Получить список проектов"""
+  projects(limit: Int, page: Int): [ProjectType!]!
+}
+
+"""Навык профиля"""
+type SkillType {
+  """Описание навыка"""
+  description: String!
+
+  """Идентификатор навыка"""
+  id: Int!
+
+  """Ссылка на изображение"""
+  imageUrl: String
+
+  """Название навыка"""
+  title: String!
+}
+
+"""Данные для обновления проекта"""
+input UpdateProjectInput {
+  """Описание проекта"""
+  description: String
+
+  """Идентификатор проекта"""
+  id: Int!
+
+  """Ссылка на изображение"""
+  imageUrl: String
+
+  """Ссылка на репозиторий"""
+  repositoryUrl: String
+
+  """Название проекта"""
+  title: String
+}

@@ -1,0 +1,19 @@
+<footer>
+    <section id="contacts">
+        <h2 id="contacts-title">Контакты</h2>
+
+        {{#each contacts}}
+            <p>
+                <span>{{label}}:</span>
+                {{value}}
+            </p>
+        {{/each}}
+    </section>
+
+    <div class="perf-metrics">
+        <span id="server-perf">Сервер: {{serverElapsedTime}}</span>
+        <span id="perf-stats">Клиент: измеряется...</span>
+    </div>
+
+    <p class="text-underline">© Павел Ящищен, группа M3314. Все права защищены.</p>
+</footer>

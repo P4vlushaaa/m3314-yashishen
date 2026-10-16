@@ -1,0 +1,58 @@
+{
+  "name": "m3314-yashishen",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Павел Ящищен, M3314",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "build": "nest build",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:prod": "node dist/main",
+    "prisma:seed": "ts-node prisma/seed.ts"
+  },
+  "dependencies": {
+    "@apollo/server": "^5.5.0",
+    "@as-integrations/express5": "^1.1.2",
+    "@aws-sdk/client-s3": "^3.1032.0",
+    "@nestjs/apollo": "^13.2.5",
+    "@nestjs/cache-manager": "^3.1.0",
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/config": "^12.0.1",
+    "@nestjs/core": "^11.0.0",
+    "@nestjs/graphql": "^13.2.5",
+    "@nestjs/mapped-types": "*",
+    "@nestjs/platform-express": "^11.0.0",
+    "@nestjs/serve-static": "^5.0.0",
+    "@nestjs/swagger": "^11.3.0",
+    "@prisma/client": "^5.22.0",
+    "cache-manager": "^7.2.8",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "graphql": "^16.13.2",
+    "graphql-query-complexity": "^1.1.0",
+    "hbs": "^4.2.0",
+    "pg": "^8.20.0",
+    "prisma": "^5.22.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1",
+    "supertokens-nestjs": "^1.0.1",
+    "supertokens-node": "^24.0.2",
+    "supertokens-web-js": "^0.16.0",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.0",
+    "@nestjs/schematics": "^11.0.0",
+    "@nestjs/testing": "^11.0.0",
+    "@types/express": "^5.0.0",
+    "@types/multer": "^2.1.0",
+    "@types/node": "^22.10.1",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.7.2"
+  }
+}

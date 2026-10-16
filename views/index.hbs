@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Web-портфолио — Павел Ящищен</title>
+    {{> head}}
+
+    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.js"></script>
+</head>
+<body>
+{{> header}}
+
+{{#> content}}
+    <section class="header">
+        <h1>{{profile.fullName}}</h1>
+        <p><em>{{profile.subtitle}}</em></p>
+    </section>
+
+    <section id="about">
+        <h2 id="about-title">Обо мне</h2>
+
+        <article>
+            <h3>Коротко</h3>
+            <p>{{profile.bio}}</p>
+        </article>
+
+        <aside class="about-button">
+            <a href="/about" class="white-button">Подробнее обо мне</a>
+        </aside>
+    </section>
+
+    <hr class="selection-divider" />
+
+    <section id="skills">
+        <h2>Навыки</h2>
+
+        <article class="skills__row">
+            {{#each skills}}
+                {{> skillCard}}
+            {{/each}}
+        </article>
+
+        <article class="skills_button">
+            <a href="/skills" class="white-button">Подробнее о навыках</a>
+        </article>
+    </section>
+
+    <hr class="selection-divider" />
+
+    <section id="projects">
+        <div class="project__part">
+            <h2 id="projects-title">Проекты</h2>
+
+            <aside class="project__row">
+                {{#each projects}}
+                    {{> projectCard}}
+                {{/each}}
+            </aside>
+
+            <aside class="project__links">
+                <ul>
+                    <li>
+                        <a href="https://github.com/pavel-yashishen/task-tracker" class="black-button">
+                            Task Tracker
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/pavel-yashishen" class="white-button">
+                            GitHub profile
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/projects" class="black-button">
+                            Больше проектов
+                        </a>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+
+        <article class="project__image">
+            <aside>
+                <img src="/img/image-for-projects-1.png" alt="project image" width="747" height="764" />
+            </aside>
+        </article>
+    </section>
+{{/content}}
+
+{{> footer}}
+</body>
+</html>
